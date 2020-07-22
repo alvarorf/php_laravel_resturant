@@ -17,9 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+if(Auth::check()){
+    Auth::routes(['register'=>false]);
+}
+else {
+    Auth::routes(['register'=>true]);
+}
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 
+'HomeController@index')->name('home');
 
-Route::resource('category','CategoryController');
-Route::resource('food','FoodController');
+Route::resource('category',
+'CategoryController')->middleware('auth');
+Route::resource('food',
+'FoodController')->middleware('auth');
