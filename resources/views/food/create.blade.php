@@ -4,7 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="{{route('food.store')}}" method="post">
+            @if(Session::has('message'))
+                <div class="alert alert-success">
+                    {{Session::get('message')}}
+                </div>
+            @endif
+            <form action="{{route('food.store')}}" method="post"
+            enctype="multipart/form-data">
             @csrf
                 <div class="card">
                     <div class="card-header">Add new food</div>
@@ -40,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="number" name="price" class="
+                            <input type="number" step="any" name="price" class="
                             form-control @error('price')
                              is-invalid @enderror">
                             @error('price')
@@ -73,7 +79,7 @@
                         </div>
                         <div class="form-group">
                             <label for="image">Image</label>
-                            <input type="text" name="image" class="
+                            <input type="file" name="image" class="
                             form-control 
                             @error('image')
                              is-invalid @enderror">
