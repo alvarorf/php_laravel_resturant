@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
 
 if(Auth::check()){
     Auth::routes(['register'=>false]);
@@ -31,3 +31,4 @@ Route::resource('category',
 'CategoryController')->middleware('auth');
 Route::resource('food',
 'FoodController')->middleware('auth');
+Route::get('/','FoodController@listFood');
