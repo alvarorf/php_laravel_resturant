@@ -20,7 +20,13 @@
 
 
                     </p>
-                       <p class="text-center"><a href="">view</a></p>
+                    <p class="text-center">
+                        <a href="{{route('food.view',[$food->id])}}">
+                        <button class="btn btn-outline-danger">
+                            View
+                        </button>
+                        </a>
+                    </p>
                 </div>
                 
                 @endforeach
